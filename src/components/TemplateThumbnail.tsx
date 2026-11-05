@@ -4,13 +4,18 @@ import { GraduationCapIcon } from "@phosphor-icons/react/dist/ssr/GraduationCap"
 import { UsersThreeIcon } from "@phosphor-icons/react/dist/ssr/UsersThree";
 import { BookOpenIcon } from "@phosphor-icons/react/dist/ssr/BookOpen";
 import { GlobeHemisphereWestIcon } from "@phosphor-icons/react/dist/ssr/GlobeHemisphereWest";
-import { templates, student, business } from "@/data/templates";
+import { student, business, type TemplateDefinition } from "@/data/templates";
+import { isSignatureDesign } from "@/data/designs";
+import { SignatureDesignContent } from "./designs/SignatureDesign";
 import ProjectPreview from "./ProjectPreview";
 
-export default function TemplateThumbnail({ template }: { template: typeof templates[number] }) {
+export default function TemplateThumbnail({ template }: { template: TemplateDefinition }) {
+  if (isSignatureDesign(template.renderer)) {
+    return <div className="signature-thumbnail" data-design={template.renderer} aria-hidden="true" inert><div className="signature-canvas"><SignatureDesignContent design={template.renderer} compact /></div></div>;
+  }
   return (
     <div className={`template-stage stage-${template.slug}`} aria-hidden="true">
-      <div className="thumbnail-profile">
+      <div className="classic-thumbnail-canvas"><div className="thumbnail-profile">
         <div className="thumbnail-cover"><AsteriskSimpleIcon size={76} weight="light" /></div>
         <div className="thumbnail-body">
           <div className="thumbnail-avatar">{template.identity.initials}</div>
@@ -37,7 +42,7 @@ export default function TemplateThumbnail({ template }: { template: typeof templ
             <div className="thumbnail-contact">{business.email}<ArrowUpRightIcon size={13} /></div>
           </>}
         </div>
-      </div>
+      </div></div>
     </div>
   );
 }

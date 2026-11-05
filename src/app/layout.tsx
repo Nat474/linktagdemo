@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, DM_Serif_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import "./designs.css";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const editorial = DM_Serif_Display({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-editorial" });
+const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk" });
 
 export const metadata: Metadata = {
   title: "Mara Ellis · Linktag",
@@ -20,7 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <script dangerouslySetInnerHTML={{ __html: initializeTheme }} />
       </head>
-      <body className={outfit.variable}>{children}</body>
+      <body className={`${outfit.variable} ${editorial.variable} ${grotesk.variable}`}>{children}</body>
     </html>
   );
 }

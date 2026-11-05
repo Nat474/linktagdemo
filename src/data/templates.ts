@@ -1,4 +1,5 @@
 import { profile } from "./profile";
+import { campus, developer, photographer, cafe, coach, musician, type SignatureDesign } from "./designs";
 
 export type DemoIdentity = {
   name: string;
@@ -53,8 +54,32 @@ export const business = {
   ],
 } satisfies DemoIdentity & Record<string, unknown>;
 
-export const templates = [
-  { slug: "portfolio", title: "Portfolio", description: "Let your work do the talking. A home for your projects, skills, and next collaboration.", audience: "For creatives & independent makers", identity: profile },
-  { slug: "student", title: "Student", description: "More than a résumé. Share what you’re learning, building, and looking forward to.", audience: "For students & fresh perspectives", identity: student },
-  { slug: "business", title: "Business", description: "A warm introduction to your business. Your story, services, and details in one place.", audience: "For small businesses & big ideas", identity: business },
-] as const;
+export const templateCategories = ["Student", "Portfolio", "Business", "Creator"] as const;
+export type TemplateCategory = typeof templateCategories[number];
+export type TemplateRenderer = SignatureDesign | "portfolio" | "student" | "business";
+export type TemplateDefinition = {
+  slug: string;
+  title: string;
+  description: string;
+  category: TemplateCategory;
+  audienceTags: readonly string[];
+  styleLabel: string;
+  renderer: TemplateRenderer;
+  identity: DemoIdentity;
+};
+
+export const templates: readonly TemplateDefinition[] = [
+  { slug: "campus-notes", renderer: "campus-notes", title: "Campus Notes", category: "Student", audienceTags: ["Student", "University"], styleLabel: "Notebook · Cream & cobalt", description: "A bright little notebook for your studies, projects, and whatever comes next.", identity: campus },
+  { slug: "stack", renderer: "stack", title: "Stack", category: "Portfolio", audienceTags: ["Portfolio", "Developer"], styleLabel: "Technical · Graphite & mint", description: "Good code deserves a good introduction. A focused home for the things you build.", identity: developer },
+  { slug: "aperture", renderer: "aperture", title: "Aperture", category: "Portfolio", audienceTags: ["Portfolio", "Photographer"], styleLabel: "Editorial · Ivory & charcoal", description: "Let the pictures lead. An editorial canvas for your eye and your point of view.", identity: photographer },
+  { slug: "sunday-cafe", renderer: "sunday-cafe", title: "Sunday Café", category: "Business", audienceTags: ["Business", "Café"], styleLabel: "Neighborhood · Cream & terracotta", description: "A warm welcome before the first visit. Your menu, your story, your corner of the world.", identity: cafe },
+  { slug: "momentum", renderer: "momentum", title: "Momentum", category: "Business", audienceTags: ["Business", "Fitness Coach"], styleLabel: "Bold · Off-white & orange", description: "Bring your coaching philosophy to life with a confident, energetic first impression.", identity: coach },
+  { slug: "after-hours", renderer: "after-hours", title: "After Hours", category: "Creator", audienceTags: ["Creator", "Musician"], styleLabel: "Expressive · Midnight & pink", description: "Your sound, your world. A compact press kit for releases, live dates, and new listeners.", identity: musician },
+  { slug: "portfolio", renderer: "portfolio", title: "Portfolio", category: "Portfolio", audienceTags: ["Portfolio", "Designer"], styleLabel: "Original · Linktag green", description: "Let your work do the talking. A home for your projects, skills, and next collaboration.", identity: profile },
+  { slug: "student", renderer: "student", title: "Student", category: "Student", audienceTags: ["Student", "Early Career"], styleLabel: "Original · Linktag green", description: "More than a résumé. Share what you’re learning, building, and looking forward to.", identity: student },
+  { slug: "business", renderer: "business", title: "Business", category: "Business", audienceTags: ["Business", "Studio"], styleLabel: "Original · Linktag green", description: "A warm introduction to your business. Your story, services, and details in one place.", identity: business },
+];
+
+export function getTemplate(slug: string) {
+  return templates.find(template => template.slug === slug);
+}

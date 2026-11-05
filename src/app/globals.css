@@ -52,9 +52,10 @@ svg { flex-shrink: 0; }
 main:focus { outline: none; }
 .linktag-page { width: min(1136px, calc(100% - 80px)); margin-inline: auto; }
 .site-header { min-height: 112px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); }
-.wordmark { display: inline-flex; align-items: center; font-size: 29px; font-weight: 600; letter-spacing: -1.4px; }
-.brand-symbol { width: 35px; height: 35px; display: grid; place-items: center; margin-right: 9px; border-radius: 11px; background: var(--lime); color: #123d30; }
-.wordmark-period { color: #5b894d; }
+.wordmark { display: inline-flex; align-items: center; justify-content: center; width: 132px; height: 64px; flex-shrink: 0; }
+.brand-logo { display: block; width: 100%; height: 100%; object-fit: contain; filter: brightness(0); }
+[data-theme="dark"] .brand-logo { filter: none; }
+.brand-logo-footer { width: 86px; height: 42px; }
 .header-actions { display: flex; gap: 10px; }
 .linktag-page .lt-button { min-height: 44px; border: 1px solid var(--border); background: var(--surface); color: var(--text); box-shadow: none; border-radius: 12px; font-weight: 450; line-height: 1.4; transition: background 160ms ease, border-color 160ms ease; --tw-ring-color: transparent; }
 .linktag-page .lt-button:hover { background: var(--hover); border-color: #8fa58c; }
@@ -211,9 +212,7 @@ h1 { font-size: 32px; font-weight: 500; line-height: 1.15; letter-spacing: -1.1p
 @media (max-width: 767px) {
   .linktag-page { width: min(480px, calc(100% - 40px)); }
   .site-header { min-height: 86px; }
-  .wordmark { font-size: 26px; }
-  .brand-symbol { width: 31px; height: 31px; border-radius: 10px; margin-right: 7px; }
-  .brand-symbol svg { width: 20px; }
+  .wordmark { width: 108px; height: 52px; }
   .header-actions { gap: 7px; }
   .linktag-page .share-button { padding-inline: 12px; font-size: 12px; gap: 6px; }
   .profile-layout { display: flex; flex-direction: column; gap: 34px; padding-block: 26px 36px; }
@@ -413,8 +412,6 @@ h1 { font-size: 32px; font-weight: 500; line-height: 1.15; letter-spacing: -1.1p
   .header-template-link { padding-inline: 7px; font-size: 12px; }
   .header-actions .share-button { width: 40px; min-height: 40px; padding: 0; }
   .header-actions .share-label, .preview-label { display: none; }
-  .template-preview-page .wordmark { font-size: 24px; }
-  .template-preview-page .brand-symbol { margin-right: 5px; }
   .template-preview-page .header-template-link { font-size: 11px; gap: 4px; padding-inline: 3px; }
   .templates-page .site-header { min-height: 86px; }
   .templates-main { padding-top: 29px; }
@@ -445,8 +442,7 @@ h1 { font-size: 32px; font-weight: 500; line-height: 1.15; letter-spacing: -1.1p
   .studio-intro p { font-size: 12px; }
 }
 @media (max-width: 359px) {
-  .site-header .wordmark { font-size: 24px; }
-  .site-header .brand-symbol { width: 28px; height: 28px; margin-right: 5px; }
+  .site-header .wordmark { width: 96px; height: 46px; }
   .site-header .header-actions { gap: 5px; }
   .site-header .header-template-link { padding-inline: 3px; }
   .template-preview-page .header-template-link svg { display: none; }
