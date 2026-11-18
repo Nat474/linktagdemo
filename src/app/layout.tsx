@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import { Outfit, DM_Serif_Display, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import "./designs.css";
+import "./demo.css";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const editorial = DM_Serif_Display({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-editorial" });
 const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk" });
 
 export const metadata: Metadata = {
-  title: "Mara Ellis · Linktag",
-  description: "Meet Mara Ellis, an independent brand and digital designer. A fictional Linktag profile demo.",
+  title: "Linktag · A small tag. A real connection.",
+  description: "Explore the Linktag product demo. One keychain, one scan, and a personal introduction.",
   applicationName: "Linktag",
   robots: { index: false, follow: false },
 };

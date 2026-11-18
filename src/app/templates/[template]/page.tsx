@@ -25,7 +25,7 @@ export default async function TemplatePage({ params }: PageProps) {
   const selected = getTemplate(template);
   if (!selected) notFound();
   if (isSignatureDesign(selected.renderer)) return <SignatureTemplatePage template={selected} design={selected.renderer} />;
-  if (selected.renderer === "portfolio") return <ProfilePage profile={profile} readOnly />;
+  if (selected.renderer === "portfolio") return <ProfilePage profile={profile} />;
   if (selected.renderer === "student" || selected.renderer === "business") return <DemoTemplatePage kind={selected.renderer} />;
   notFound();
 }

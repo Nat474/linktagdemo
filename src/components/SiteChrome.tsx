@@ -7,7 +7,7 @@ import BrandLogo from "./BrandLogo";
 export function SiteHeader({ preview, gallery, showThemeToggle = true, children }: { preview?: boolean; gallery?: boolean; showThemeToggle?: boolean; children?: ReactNode }) {
   return (
     <header className="site-header">
-      <Link href="/" className="wordmark" aria-label="Linktag Pro, go to profile">
+      <Link href="/dashboard" className="wordmark" aria-label="Linktag Pro, go to dashboard">
         <BrandLogo />
       </Link>
       <div className="header-actions">

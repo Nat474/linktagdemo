@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start --port 3002",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate:qr": "node scripts/generate-demo-qr.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",
@@ -23,6 +24,7 @@
     "eslint": "9.39.5",
     "eslint-config-next": "16.0.7",
     "postcss": "8.5.26",
+    "qrcode": "1.5.4",
     "tailwindcss": "4.3.3",
     "typescript": "5.9.3"
   }

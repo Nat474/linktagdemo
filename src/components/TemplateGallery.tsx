@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowUpRightIcon } from "@phosphor-icons/react/ArrowUpRight";
 import { templateCategories, type TemplateCategory, type TemplateDefinition } from "@/data/templates";
 
-type GalleryItem = Pick<TemplateDefinition, "slug" | "title" | "description" | "category" | "audienceTags" | "styleLabel"> & { preview: ReactNode };
+type GalleryItem = Pick<TemplateDefinition, "slug" | "title" | "description" | "category" | "audienceTags" | "styleLabel"> & { preview: ReactNode; current?: boolean };
 
 export default function TemplateGallery({ items }: { items: GalleryItem[] }) {
   const [category, setCategory] = useState<TemplateCategory | "All">("All");
@@ -25,7 +25,7 @@ export default function TemplateGallery({ items }: { items: GalleryItem[] }) {
             <Link href={`/templates/${template.slug}`} className="template-image-link" aria-label={`View ${template.title} template preview`}>{template.preview}</Link>
             <div className="template-card-content">
               <div className="template-audience-tags">{template.audienceTags.map(tag => <span key={tag}>{tag}</span>)}</div>
-              <div className="template-title-row"><h2>{template.title}</h2>{template.slug === "portfolio" && <span className="template-current">Current profile</span>}</div>
+              <div className="template-title-row"><h2>{template.title}</h2>{template.current && <span className="template-current">Current design</span>}</div>
               <p>{template.description}</p>
               <div className="template-card-bottom"><span>{template.styleLabel}</span><Link href={`/templates/${template.slug}`} aria-label={`View ${template.title} preview`}>View preview<ArrowUpRightIcon size={16} /></Link></div>
             </div>

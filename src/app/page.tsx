@@ -1,6 +1,5 @@
-import ProfilePage from "@/components/ProfilePage";
-import { profile } from "@/data/profile";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return <ProfilePage profile={profile} />;
+  redirect("/dashboard");
 }

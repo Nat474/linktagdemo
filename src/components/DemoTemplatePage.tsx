@@ -11,7 +11,8 @@ import { PaletteIcon } from "@phosphor-icons/react/dist/ssr/Palette";
 import { PhoneIcon } from "@phosphor-icons/react/dist/ssr/Phone";
 import { TagIcon } from "@phosphor-icons/react/dist/ssr/Tag";
 import { UsersThreeIcon } from "@phosphor-icons/react/dist/ssr/UsersThree";
-import { SiteHeader, SiteFooter } from "./SiteChrome";
+import { SiteFooter } from "./SiteChrome";
+import ProfileHeader, { type ProfilePresentation } from "./ProfileChrome";
 import { business, student, type DemoIdentity } from "@/data/templates";
 
 function DemoIdentityCard({ identity, isStudent }: { identity: DemoIdentity; isStudent: boolean }) {
@@ -78,12 +79,12 @@ function BusinessContent() {
   );
 }
 
-export default function DemoTemplatePage({ kind }: { kind: "student" | "business" }) {
+export default function DemoTemplatePage({ kind, mode = "template", publicPath }: { kind: "student" | "business"; mode?: ProfilePresentation; publicPath?: string }) {
   const isStudent = kind === "student";
   return (
-    <div className={`linktag-page template-preview-page ${kind}-preview-page`}>
+    <div className={`linktag-page ${mode === "template" ? "template-preview-page" : "public-profile-page"} ${kind}-preview-page`}>
       <a className="skip-link" href="#profile">Skip to profile</a>
-      <SiteHeader preview><span className="preview-label">{isStudent ? "Student" : "Business"} preview</span></SiteHeader>
+      <ProfileHeader mode={mode} title={isStudent ? "Student" : "Business"} identity={isStudent ? student : business} publicPath={publicPath} />
       <main id="profile" className="profile-layout" tabIndex={-1}><DemoIdentityCard identity={isStudent ? student : business} isStudent={isStudent} />{isStudent ? <StudentContent /> : <BusinessContent />}</main>
       <SiteFooter />
     </div>

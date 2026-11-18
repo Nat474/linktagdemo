@@ -9,7 +9,8 @@ import { PlayIcon } from "@phosphor-icons/react/dist/ssr/Play";
 import { ArrowDownIcon } from "@phosphor-icons/react/dist/ssr/ArrowDown";
 import { campus, developer, photographer, cafe, coach, musician, type SignatureDesign } from "@/data/designs";
 import type { TemplateDefinition } from "@/data/templates";
-import { SiteHeader, SiteFooter } from "../SiteChrome";
+import { SiteFooter } from "../SiteChrome";
+import ProfileHeader, { type ProfilePresentation } from "../ProfileChrome";
 
 type DesignProps = { compact: boolean };
 
@@ -105,12 +106,12 @@ export function SignatureDesignContent({ design, compact = false }: { design: Si
   return <div className={`signature-design${compact ? " signature-mini" : ""}`} data-design={design}><div className="signature-content"><Content compact={compact} /></div></div>;
 }
 
-export default function SignatureTemplatePage({ template, design }: { template: TemplateDefinition; design: SignatureDesign }) {
+export default function SignatureTemplatePage({ template, design, mode = "template", publicPath }: { template: TemplateDefinition; design: SignatureDesign; mode?: ProfilePresentation; publicPath?: string }) {
   return (
     <div className="signature-page" data-design={design}>
-      <a className="skip-link" href="#design-preview">Skip to sample profile</a>
-      <div className="linktag-page signature-chrome"><SiteHeader preview showThemeToggle={false}><span className="preview-label">{template.title} preview</span></SiteHeader></div>
-      <main id="design-preview" tabIndex={-1}><div className="signature-preview-meta"><span>{template.title}</span><div>{template.audienceTags.map(tag => <span key={tag}>{tag}</span>)}</div><span>Read-only sample</span></div><SignatureDesignContent design={design} /></main>
+      <a className="skip-link" href="#design-preview">Skip to profile</a>
+      <div className="linktag-page signature-chrome"><ProfileHeader mode={mode} title={template.title} identity={template.identity} publicPath={publicPath} fixedPalette /></div>
+      <main id="design-preview" tabIndex={-1}>{mode === "template" && <div className="signature-preview-meta"><span>{template.title}</span><div>{template.audienceTags.map(tag => <span key={tag}>{tag}</span>)}</div><span>Read-only sample</span></div>}<SignatureDesignContent design={design} /></main>
       <div className="linktag-page signature-chrome"><SiteFooter /></div>
     </div>
   );
